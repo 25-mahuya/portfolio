@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahuya Sarkar - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* Light grayish-blue background */
+            color: #1a202c; /* Dark gray text */
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Purple-ish gradient */
+        }
+        .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #f6ad55; /* Orange accent */
+            transition: width 0.3s ease-in-out;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        .section-title {
+            color: #4a5568; /* Medium gray */
+        }
+        .skill-badge {
+            background-color: #e2e8f0; /* Light gray */
+            color: #4a5568; /* Medium gray */
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .skill-badge:hover {
+            background-color: #667eea; /* Purple accent */
+            color: white;
+        }
+        .btn-primary {
+            background-color: #667eea;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #5a67d8;
+        }
+        .btn-secondary {
+            background-color: #f6ad55;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        .btn-secondary:hover {
+            background-color: #ed8936;
+        }
+        /* Mobile Menu Styles */
+        .mobile-menu {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .desktop-menu {
+                display: none;
+            }
+            .mobile-menu {
+                display: block; /* Hidden by default, shown by JS */
+            }
+            .mobile-nav-links {
+                display: none; /* Hidden by default, shown by JS */
+                flex-direction: column;
+                position: absolute;
+                top: 60px; /* Adjust as needed */
+                left: 0;
+                right: 0;
+                background-color: #ffffff;
+                padding: 1rem;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                z-index: 40; /* Below nav bar but above content */
+            }
+            .mobile-nav-links.active {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav id="navbar" class="bg-white shadow-md fixed w-full z-50 top-0 transition-all duration-300">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold playfair text-indigo-600">Mahuya Sarkar</a>
+            <div class="hidden md:flex space-x-4 desktop-menu">
+                <a href="#about" class="nav-link text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md">About</a>
+                <a href="#skills" class="nav-link text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md">Skills</a>
+                <a href="#projects" class="nav-link text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md">Projects</a>
+                <a href="#education" class="nav-link text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md">Education</a>
+                <a href="#hobbies" class="nav-link text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md">Hobbies</a>
+                <a href="#contact" class="nav-link text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md">Contact</a>
+            </div>
+            <div class="md:hidden mobile-menu">
+                <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
+                    <i class="fas fa-bars fa-lg"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-nav-links" class="mobile-nav-links md:hidden">
+            <a href="#about" class="block nav-link text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md">About</a>
+            <a href="#skills" class="block nav-link text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md">Skills</a>
+            <a href="#projects" class="block nav-link text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md">Projects</a>
+            <a href="#education" class="block nav-link text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md">Education</a>
+            <a href="#hobbies" class="block nav-link text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md">Hobbies</a>
+            <a href="#contact" class="block nav-link text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md">Contact</a>
+        </div>
+    </nav>
+
+    <header id="home" class="hero-bg text-white pt-32 pb-20 md:pt-40 md:pb-28 flex items-center justify-center min-h-screen">
+        <div class="container mx-auto px-6 text-center">
+            <img src="https://placehold.co/150x150/FFFFFF/667EEA?text=MS" alt="Mahuya Sarkar" class="w-36 h-36 md:w-48 md:h-48 rounded-full mx-auto mb-8 border-4 border-white shadow-lg">
+            <h1 class="text-4xl md:text-6xl font-bold playfair mb-4">Mahuya Sarkar</h1>
+            <p class="text-xl md:text-2xl mb-8 text-indigo-100">B.Tech Student | Aspiring Software Developer | Problem Solver</p>
+            <a href="#projects" class="btn-secondary font-semibold py-3 px-8 rounded-lg text-lg mr-4">View Projects</a>
+            <a href="#contact" class="btn-primary font-semibold py-3 px-8 rounded-lg text-lg">Contact Me</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12 md:py-20">
+
+        <section id="about" class="mb-16 md:mb-24 scroll-mt-20">
+            <h2 class="text-3xl md:text-4xl font-bold playfair text-center mb-10 section-title">About Me</h2>
+            <div class="card p-6 md:p-8 max-w-3xl mx-auto text-center md:text-left">
+                <div class="md:flex md:items-center">
+                    <div class="md:w-1/3 text-center mb-6 md:mb-0">
+                         <img src="https://placehold.co/200x200/E2E8F0/4A5568?text=Profile" alt="Profile Sketch" class="w-40 h-40 rounded-full mx-auto shadow-md">
+                         </div>
+                    <div class="md:w-2/3 md:pl-8">
+                        <p class="text-lg text-gray-700 leading-relaxed">
+                            A dedicated and detail-oriented B.Tech student with a strong foundation in engineering principles, programming, and problem-solving. Passionate about applying technical knowledge to real-world challenges, with hands-on experience in academic projects, coding, and team collaboration. Eager to contribute to innovative solutions and grow as a versatile tech professional.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="mb-16 md:mb-24 scroll-mt-20">
+            <h2 class="text-3xl md:text-4xl font-bold playfair text-center mb-10 section-title">My Skills</h2>
+            <div class="card p-6 md:p-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-3 text-indigo-600"><i class="fas fa-code mr-2"></i>Programming Languages</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-badge px-3 py-1 rounded-full text-sm font-medium">Java</span>
+                            <span class="skill-badge px-3 py-1 rounded-full text-sm font-medium">Python</span>
+                            <span class="skill-badge px-3 py-1 rounded-full text-sm font-medium">C</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-3 text-indigo-600"><i class="fas fa-cogs mr-2"></i>Software Development</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-badge px-3 py-1 rounded-full text-sm font-medium">Object-Oriented Programming (OOP)</span>
+                            <span class="skill-badge px-3 py-1 rounded-full text-sm font-medium">Data Structures and Algorithms</span>
+                        </div>
+                    </div>
+                     <div>
+                        <h3 class="text-xl font-semibold mb-3 text-indigo-600"><i class="fas fa-laptop-code mr-2"></i>Frontend Development</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-badge px-3 py-1 rounded-full text-sm font-medium">HTML</span>
+                            <span class="skill-badge px-3 py-1 rounded-full text-sm font-medium">CSS</span>
+                            <span class="skill-badge px-3 py-1 rounded-full text-sm font-medium">JavaScript</span>
+                            <span class="skill-badge px-3 py-1 rounded-full text-sm font-medium">Tailwind CSS</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-3 text-indigo-600"><i class="fas fa-lightbulb mr-2"></i>Problem Solving</h3>
+                        <p class="text-gray-600">Strong analytical and logical thinking abilities to tackle complex challenges.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-3 text-indigo-600"><i class="fas fa-comments mr-2"></i>Communication</h3>
+                        <p class="text-gray-600">Effective verbal and written communication skills for clear articulation of ideas.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-3 text-indigo-600"><i class="fas fa-users mr-2"></i>Team Collaboration</h3>
+                        <p class="text-gray-600">Proven ability to work effectively within a team environment to achieve common goals.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="mb-16 md:mb-24 scroll-mt-20">
+            <h2 class="text-3xl md:text-4xl font-bold playfair text-center mb-10 section-title">My Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card p-6">
+                    <img src="https://placehold.co/600x400/667EEA/FFFFFF?text=Object+Detection" alt="Object Detection Project" class="rounded-lg mb-4 w-full h-48 object-cover">
+                    <h3 class="text-2xl font-semibold mb-2 text-indigo-700">Object Detection using YOLO</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        Developed a real-time object detection system that identifies and localizes objects in images or videos using deep learning (YOLO algorithm). The model processes the entire image in a single pass, making it highly efficient for applications requiring quick and accurate detection.
+                    </p>
+                    <a href="#" class="btn-primary inline-block py-2 px-4 rounded-md text-sm font-medium hover:bg-indigo-700 transition duration-300">
+                        View Details <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                </div>
+                <div class="card p-6">
+                     <img src="https://placehold.co/600x400/764BA2/FFFFFF?text=AI+Image+Generator" alt="AI Image Generator Project" class="rounded-lg mb-4 w-full h-48 object-cover">
+                    <h3 class="text-2xl font-semibold mb-2 text-purple-700">AI-Based Image Generator</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        Developed an AI-based image generator using generative models to create high-quality visuals from text prompts. Integrated model inference with a user-friendly frontend for real-time image generation and creative exploration.
+                    </p>
+                     <a href="#" class="btn-primary inline-block py-2 px-4 rounded-md text-sm font-medium bg-purple-600 hover:bg-purple-700 transition duration-300">
+                        View Details <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="mb-16 md:mb-24 scroll-mt-20">
+            <h2 class="text-3xl md:text-4xl font-bold playfair text-center mb-10 section-title">Education</h2>
+            <div class="space-y-8">
+                <div class="card p-6 md:p-8">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0">
+                            <span class="inline-flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 text-indigo-600">
+                                <i class="fas fa-graduation-cap fa-lg"></i>
+                            </span>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-xl font-semibold text-indigo-700">B.Tech - University of Engineering and Management, Kolkata</h3>
+                            <p class="text-gray-500 text-sm">August 2022 - Present</p>
+                            <p class="text-gray-700 mt-1">YGPA: 9.02/10.0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card p-6 md:p-8">
+                     <div class="flex items-start">
+                        <div class="flex-shrink-0">
+                            <span class="inline-flex items-center justify-center h-12 w-12 rounded-full bg-purple-100 text-purple-600">
+                                <i class="fas fa-school fa-lg"></i>
+                            </span>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-xl font-semibold text-purple-700">XII Standard - Rajendra Vidyalaya, Jamshedpur</h3>
+                            <p class="text-gray-500 text-sm">Council for the Indian School Certificate Examinations</p>
+                            <p class="text-gray-500 text-sm">March 2020 - May 2022</p>
+                            <p class="text-gray-700 mt-1">Percentage: 78.6%</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card p-6 md:p-8">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0">
+                            <span class="inline-flex items-center justify-center h-12 w-12 rounded-full bg-orange-100 text-orange-600">
+                                <i class="fas fa-book-reader fa-lg"></i>
+                            </span>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-xl font-semibold text-orange-700">X Standard - Rajendra Vidyalaya, Jamshedpur</h3>
+                            <p class="text-gray-500 text-sm">Council for the Indian School Certificate Examinations</p>
+                            <p class="text-gray-500 text-sm">March 2008 - March 2020</p>
+                            <p class="text-gray-700 mt-1">Percentage: 92.0%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="hobbies" class="mb-16 md:mb-24 scroll-mt-20">
+            <h2 class="text-3xl md:text-4xl font-bold playfair text-center mb-10 section-title">Hobbies & Interests</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 text-center">
+                <div class="card p-6">
+                    <i class="fas fa-music fa-3x text-indigo-500 mb-3"></i>
+                    <h3 class="text-xl font-semibold text-gray-700">Singing</h3>
+                </div>
+                <div class="card p-6">
+                    <i class="fas fa-paint-brush fa-3x text-purple-500 mb-3"></i>
+                    <h3 class="text-xl font-semibold text-gray-700">Painting</h3>
+                </div>
+                <div class="card p-6">
+                    <i class="fas fa-utensils fa-3x text-orange-500 mb-3"></i>
+                    <h3 class="text-xl font-semibold text-gray-700">Cooking</h3>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="scroll-mt-20 bg-gray-100 py-16 md:py-24 rounded-xl">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold playfair text-center mb-10 section-title">Get In Touch</h2>
+                <div class="card max-w-2xl mx-auto p-6 md:p-8 text-center">
+                    <p class="text-lg text-gray-700 mb-6">
+                        I'm always open to discussing new projects, creative ideas, or opportunities to be part of something amazing. Feel free to reach out!
+                    </p>
+                    <div class="space-y-4">
+                        <a href="mailto:mahuyasarkar2161@gmail.com" class="block text-indigo-600 hover:text-indigo-800 text-lg transition duration-300">
+                            <i class="fas fa-envelope mr-2"></i> mahuyasarkar2161@gmail.com
+                        </a>
+                        <a href="tel:+916200344458" class="block text-indigo-600 hover:text-indigo-800 text-lg transition duration-300">
+                            <i class="fas fa-phone mr-2"></i> +91 6200344458
+                        </a>
+                        <a href="https://www.linkedin.com/in/mahuya-sarkar" target="_blank" rel="noopener noreferrer" class="block text-indigo-600 hover:text-indigo-800 text-lg transition duration-300">
+                            <i class="fab fa-linkedin mr-2"></i> LinkedIn Profile
+                        </a>
+                    </div>
+                    <div class="mt-8">
+                        <!-- <h3 class="text-xl font-semibold mb-4 text-gray-700">Or send me a message:</h3>
+                        <form action="#" method="POST">
+                            <div class="mb-4">
+                                <label for="name" class="block text-sm font-medium text-gray-700 text-left">Full Name</label>
+                                <input type="text" name="name" id="name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Your Name">
+                            </div>
+                            <div class="mb-4">
+                                <label for="email" class="block text-sm font-medium text-gray-700 text-left">Email Address</label>
+                                <input type="email" name="email" id="email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="you@example.com">
+                            </div>
+                            <div class="mb-4">
+                                <label for="message" class="block text-sm font-medium text-gray-700 text-left">Message</label>
+                                <textarea id="message" name="message" rows="4" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Your message..."></textarea>
+                            </div>
+                            <div>
+                                <button type="submit" class="w-full btn-primary font-semibold py-2 px-4 rounded-md">
+                                    Send Message
+                                </button>
+                            </div>
+                        </form> -->
+                         <p class="text-sm text-gray-500 mt-4"><em>Contact form is for demonstration purposes. Please use the links above.</em></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 py-10 text-center">
+        <div class="container mx-auto px-6">
+            <div class="mb-4">
+                <a href="https://www.linkedin.com/in/mahuya-sarkar" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white mx-2 transition duration-300"><i class="fab fa-linkedin fa-2x"></i></a>
+                </div>
+            <p>&copy; <span id="currentYear"></span> Mahuya Sarkar. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    // Close mobile menu if open
+                    if (document.getElementById('mobile-nav-links').classList.contains('active')) {
+                        document.getElementById('mobile-nav-links').classList.remove('active');
+                        document.getElementById('mobile-menu-button').innerHTML = '<i class="fas fa-bars fa-lg"></i>';
+                    }
+                }
+            });
+        });
+
+        // Dynamic year for footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Navbar active state and scroll behavior
+        const navbar = document.getElementById('navbar');
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('nav a.nav-link'); // Desktop and mobile links
+
+        window.onscroll = () => {
+            // Sticky navbar effect
+            if (window.scrollY > 50) {
+                navbar.classList.add('py-2', 'shadow-xl');
+                navbar.classList.remove('py-3');
+            } else {
+                navbar.classList.remove('py-2', 'shadow-xl');
+                navbar.classList.add('py-3');
+            }
+
+            // Active link highlighting
+            let currentSectionId = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - navbar.offsetHeight - 50; // Adjusted offset
+                if (pageYOffset >= sectionTop) {
+                    currentSectionId = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active', 'text-indigo-600', 'font-semibold');
+                link.classList.add('text-gray-700');
+                if (link.getAttribute('href') === `#${currentSectionId}`) {
+                    link.classList.add('active', 'text-indigo-600', 'font-semibold');
+                    link.classList.remove('text-gray-700');
+                }
+            });
+        };
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileNavLinks = document.getElementById('mobile-nav-links');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileNavLinks.classList.toggle('active');
+            if (mobileNavLinks.classList.contains('active')) {
+                mobileMenuButton.innerHTML = '<i class="fas fa-times fa-lg"></i>'; // Change to close icon
+            } else {
+                mobileMenuButton.innerHTML = '<i class="fas fa-bars fa-lg"></i>'; // Change back to bars icon
+            }
+        });
+
+    </script>
+</body>
+</html>
